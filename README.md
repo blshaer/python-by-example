@@ -1,9 +1,3 @@
-<p align="center">
-  <img src="https://cdn.dribbble.com/userupload/46242920/file/bdbef935da688edfd85fcfeca75754a0.png?resize=1200x675&vertical=center"
-       alt="Python by Example"
-       width="100%">
-</p>
-
 # Python by Example
 
 A practical, example-driven Python repository designed to help you learn Python from fundamentals to advanced concepts through clear, runnable code.
