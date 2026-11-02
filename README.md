@@ -15,6 +15,7 @@ Each file is self-contained and focuses on a single concept, making the reposito
 - [File Structure](#-file-structure)
 - [Learning Path](#-learning-path)
 - [Projects](#-projects)
+- [Contributing](#-contributing)
 
 ---
 
@@ -149,9 +150,9 @@ Follow these steps to clone the repository and set it up in your local editor:
 
 6. **Read the comments** — Detailed explanations are provided inline for every concept!
 
-7. **Try the Tests** — Go to the new testing module to see how professional code is verified:
+7. **Try the Tests** — pytest discovers files named `test_*.py`:
    ```bash
-   pytest 11_testing/01_test_basics.py
+   pytest
    ```
 
 ---
@@ -160,8 +161,7 @@ Follow these steps to clone the repository and set it up in your local editor:
 
 | Requirement | Version | Notes |
 |:------------|:--------|:------|
-| Python | 3.10+ | Recommended (for match/case support) |
-| Python | 3.8+ | Minimum (for most features) |
+| Python | 3.10+ | Minimum (match/case, `list[str]` / `dict[str, int]` syntax) |
 
 ```bash
 # Check your Python version
@@ -290,6 +290,14 @@ Use this checklist to track your learning progress:
 - [ ] **Project 02** — Expense Tracker (Intermediate)
 - [ ] **Project 03** — Library Management System (Advanced)
 - [ ] **Project 04** — Real-time Weather CLI (Professional)
+
+---
+
+## Contributing
+
+Bug reports and new examples are welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, style, and testing guidelines.
+
+GitHub Actions runs `compileall` and `pytest` on Python 3.10–3.12 for every push and pull request.
 
 ---
 

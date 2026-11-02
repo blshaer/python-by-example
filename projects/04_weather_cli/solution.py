@@ -19,10 +19,11 @@ Concepts Used:
 """
 
 import json
-import urllib.request
+import urllib.error
 import urllib.parse
-from typing import Optional
+import urllib.request
 from functools import wraps
+from typing import Any, Optional, TypedDict
 
 
 # -----------------------------------------------------------------------------
@@ -31,6 +32,20 @@ from functools import wraps
 
 GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
 WEATHER_URL = "https://api.open-meteo.com/v1/forecast"
+
+class CityInfo(TypedDict):
+    name: str
+    country: str
+    latitude: float
+    longitude: float
+
+
+class WeatherData(TypedDict):
+    temperature: float
+    wind_speed: float
+    weather_code: int
+    humidity: Optional[int]
+
 
 # WMO Weather interpretation codes
 WMO_CODES: dict[int, tuple[str, str]] = {
@@ -69,7 +84,7 @@ def cache_response(func):
     This avoids making redundant API calls for the same city
     within a single session.
     """
-    _cache: dict[str, any] = {}
+    _cache: dict[str, Any] = {}
 
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -90,7 +105,7 @@ def cache_response(func):
 # API Functions
 # -----------------------------------------------------------------------------
 
-def fetch_json(url: str) -> dict:
+def fetch_json(url: str) -> dict[str, Any]:
     """Fetch JSON data from a URL using urllib (no external deps)."""
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "PythonByExample/1.0"})
@@ -103,7 +118,7 @@ def fetch_json(url: str) -> dict:
 
 
 @cache_response
-def geocode_city(city_name: str) -> Optional[dict]:
+def geocode_city(city_name: str) -> Optional[CityInfo]:
     """
     Look up a city's coordinates using the Open-Meteo Geocoding API.
     Returns dict with name, country, latitude, longitude or None if not found.
@@ -126,7 +141,7 @@ def geocode_city(city_name: str) -> Optional[dict]:
 
 
 @cache_response
-def get_weather(latitude: float, longitude: float) -> dict:
+def get_weather(latitude: float, longitude: float) -> WeatherData:
     """
     Fetch current weather data for given coordinates.
     Returns dict with temperature, humidity, wind_speed, and weather_code.
@@ -176,7 +191,7 @@ def get_weather_description(code: int) -> tuple[str, str]:
     return WMO_CODES.get(code, ("❓", "Unknown"))
 
 
-def display_weather(city_info: dict, weather: dict) -> None:
+def display_weather(city_info: CityInfo, weather: WeatherData) -> None:
     """Display weather data in a beautiful formatted box."""
     icon, condition = get_weather_description(weather["weather_code"])
     location = f"{city_info['name']}, {city_info['country']}"

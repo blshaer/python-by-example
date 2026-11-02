@@ -1,0 +1,35 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Type checkers and test caches
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Packaging
+*.egg-info/
+dist/
+build/
+
+# Environment and IDE
+.env
+.env.*
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

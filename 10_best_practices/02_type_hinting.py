@@ -79,28 +79,31 @@ print("\n--- Collection Types ---")
 
 from typing import List, Dict, Set, Tuple
 
+# Python 3.10+ prefers built-in generics: list[int], dict[str, int], set[str]
+# The typing aliases below still work and appear in older examples.
+
 # List of specific type
-def process_numbers(numbers: List[int]) -> int:
+def process_numbers(numbers: list[int]) -> int:
     """Sum a list of integers."""
     return sum(numbers)
 
 # Dictionary with key and value types
-def get_user_ages(users: Dict[str, int]) -> List[str]:
+def get_user_ages(users: dict[str, int]) -> list[str]:
     """Get names of users older than 18."""
     return [name for name, age in users.items() if age > 18]
 
 # Set of specific type
-def get_unique_words(text: str) -> Set[str]:
+def get_unique_words(text: str) -> set[str]:
     """Get unique words from text."""
     return set(text.lower().split())
 
 # Tuple with specific types (fixed length)
-def get_point() -> Tuple[float, float]:
+def get_point() -> tuple[float, float]:
     """Return an (x, y) coordinate."""
     return (1.5, 2.5)
 
 # Tuple with variable length of same type
-def get_scores() -> Tuple[int, ...]:
+def get_scores() -> tuple[int, ...]:
     """Return any number of scores."""
     return (85, 90, 78, 92)
 
@@ -123,8 +126,8 @@ def find_user(user_id: int) -> Optional[str]:
     users = {1: "Alice", 2: "Bob"}
     return users.get(user_id)  # Returns None if not found
 
-# Union = can be one of several types
-def process_input(value: Union[int, str]) -> str:
+# Union = can be one of several types (3.10+ also allows int | str)
+def process_input(value: int | str) -> str:
     """Process either int or string input."""
     if isinstance(value, int):
         return f"Number: {value}"
