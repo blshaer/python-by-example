@@ -2,6 +2,8 @@
 
 A practical, example-driven Python repository designed to help you learn Python from fundamentals to advanced concepts through clear, runnable code.
 
+**Website:** [python-by-example-web](https://github.com/blshaer/python-by-example-web) — Next.js companion site with searchable lessons (import the repo in Vercel to deploy).
+
 Each file is self-contained and focuses on a single concept, making the repository suitable for structured learning, revision, or reference.
 
 ---
